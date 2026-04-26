@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Trajectoire | L'insertion par la mobilité.</title>
+  <title>Trajectoire | La mobilité. Votre droit.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,800&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 
   <style>
     *, *::before, *::after {
@@ -17,1023 +17,1135 @@
     }
 
     :root {
-      --red: #E8000A;
-      --red-dim: rgba(232,0,10,0.12);
-      --black: #0A0A0A;
-      --white: #F5F4F0;
-      --gray: #8A8A8A;
-      --gray-light: #E8E6E0;
-      --font-display: 'Bebas Neue', Impact, sans-serif;
-      --font-body: 'DM Sans', sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
+      --yellow: #FFED00;
+      --yellow-dark: #E6D400;
+      --black: #0D0D0D;
+      --white: #FFFEF5;
+      --purple: #5B00FF;
+      --red: #FF2800;
+      --border: 4px solid var(--black);
+      --border-thick: 6px solid var(--black);
+      --shadow: 6px 6px 0 var(--black);
+      --shadow-lg: 10px 10px 0 var(--black);
+      --shadow-xl: 14px 14px 0 var(--black);
+      --font-display: 'Anton', Impact, sans-serif;
+      --font-body: 'Barlow Condensed', sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--black);
-      color: var(--white);
+      background: var(--white);
+      color: var(--black);
       font-family: var(--font-body);
       -webkit-font-smoothing: antialiased;
-      cursor: none;
       overflow-x: hidden;
     }
 
-    #cursor {
-      position: fixed;
-      width: 12px;
-      height: 12px;
-      background: var(--red);
-      pointer-events: none;
-      z-index: 99999;
-      transform: translate(-50%, -50%);
-      transition: width 0.2s, height 0.2s, background 0.2s;
-    }
-    #cursor-ring {
-      position: fixed;
-      width: 40px;
-      height: 40px;
-      border: 1.5px solid rgba(232,0,10,0.5);
-      pointer-events: none;
-      z-index: 99998;
-      transform: translate(-50%, -50%);
-      transition: all 0.12s ease-out;
-    }
-    body:has(a:hover) #cursor,
-    body:has(button:hover) #cursor { width: 6px; height: 6px; }
-    body:has(a:hover) #cursor-ring,
-    body:has(button:hover) #cursor-ring { width: 60px; height: 60px; border-color: var(--red); }
+    img { display: block; }
+    a { text-decoration: none; color: inherit; }
 
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9998;
-      opacity: 0.35;
+    ::selection {
+      background: var(--yellow);
+      color: var(--black);
     }
 
+    /* NAV */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
+      position: sticky;
+      top: 0;
       z-index: 100;
-      padding: 0 48px;
-      height: 64px;
+      background: var(--yellow);
+      border-bottom: var(--border-thick);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      background: rgba(10,10,10,0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      padding: 0 32px;
+      height: 68px;
     }
 
     .nav-logo {
       font-family: var(--font-display);
-      font-size: 22px;
-      letter-spacing: 0.08em;
-      color: var(--white);
-      text-decoration: none;
+      font-size: 26px;
+      letter-spacing: 0.02em;
+      color: var(--black);
     }
-    .nav-logo span { color: var(--red); }
+    .nav-logo em {
+      font-style: normal;
+      background: var(--black);
+      color: var(--yellow);
+      padding: 0 6px;
+      display: inline-block;
+    }
 
     .nav-links {
       display: flex;
-      gap: 40px;
+      gap: 0;
       list-style: none;
     }
     .nav-links a {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.2em;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 14px;
       text-transform: uppercase;
-      color: var(--gray);
-      text-decoration: none;
-      transition: color 0.2s;
-      position: relative;
+      letter-spacing: 0.1em;
+      padding: 8px 20px;
+      border: var(--border);
+      border-right: none;
+      background: var(--white);
+      display: block;
+      transition: background 0.1s, color 0.1s;
     }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px; left: 0;
-      width: 0; height: 1px;
-      background: var(--red);
-      transition: width 0.3s ease;
-    }
-    .nav-links a:hover { color: var(--white); }
-    .nav-links a:hover::after { width: 100%; }
+    .nav-links li:last-child a { border-right: var(--border); }
+    .nav-links a:hover { background: var(--black); color: var(--yellow); }
 
     .nav-cta {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.2em;
+      font-family: var(--font-display);
+      font-size: 18px;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      background: var(--red);
-      color: var(--white);
-      border: none;
-      padding: 10px 24px;
-      cursor: none;
-      font-weight: 700;
-      transition: background 0.2s, transform 0.1s;
+      background: var(--black);
+      color: var(--yellow);
+      border: var(--border);
+      padding: 10px 28px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.1s, transform 0.1s;
     }
-    .nav-cta:hover { background: var(--white); color: var(--black); }
+    .nav-cta:hover {
+      box-shadow: none;
+      transform: translate(6px, 6px);
+    }
 
     /* HERO */
     .hero {
+      background: var(--yellow);
+      border-bottom: var(--border-thick);
+      padding: 60px 32px 0;
+      overflow: hidden;
       position: relative;
-      height: 100vh;
-      min-height: 700px;
+      min-height: 92vh;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      overflow: hidden;
-      padding: 0 48px 80px;
     }
 
-    .hero-bg {
+    .hero::before {
+      content: '';
       position: absolute;
       inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=85&w=2400');
-      background-size: cover;
-      background-position: center;
-      filter: grayscale(100%) brightness(0.35) contrast(1.1);
-      transform: scale(1.05);
-      animation: heroZoom 8s ease-out forwards;
-    }
-
-    @keyframes heroZoom {
-      from { transform: scale(1.08); }
-      to { transform: scale(1.0); }
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(10,10,10,0.98) 0%,
-        rgba(10,10,10,0.5) 50%,
-        rgba(10,10,10,0.15) 100%
-      );
-    }
-
-    .hero-lines {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
+      background-image: radial-gradient(circle, rgba(0,0,0,0.12) 1px, transparent 1px);
+      background-size: 28px 28px;
       pointer-events: none;
     }
-    .hero-line {
-      position: absolute;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--red), transparent);
-      opacity: 0;
-      animation: lineSweep 4s ease-out infinite;
-    }
-    .hero-line:nth-child(1) { top: 30%; width: 60%; left: -60%; animation-delay: 0.5s; }
-    .hero-line:nth-child(2) { top: 55%; width: 45%; left: -45%; animation-delay: 1.2s; }
-    .hero-line:nth-child(3) { top: 70%; width: 80%; left: -80%; animation-delay: 2s; }
-    @keyframes lineSweep {
-      0% { transform: translateX(0); opacity: 0; }
-      20% { opacity: 0.6; }
-      100% { transform: translateX(250%); opacity: 0; }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+      position: relative;
+      z-index: 2;
+      flex: 1;
     }
 
-    .hero-content { position: relative; z-index: 2; }
+    .hero-left { padding-bottom: 80px; }
 
-    .hero-tag {
+    .hero-eyebrow {
       font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.3em;
+      font-size: 12px;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 24px;
-      display: flex;
+      background: var(--black);
+      color: var(--yellow);
+      display: inline-flex;
       align-items: center;
-      gap: 12px;
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 0.3s;
+      gap: 10px;
+      padding: 6px 14px;
+      margin-bottom: 32px;
+      animation: fadeSlideDown 0.5s ease both 0.2s;
     }
-    .hero-tag::before {
-      content: '';
-      width: 40px; height: 1px;
-      background: var(--red);
+    .eyebrow-dot {
+      width: 7px; height: 7px;
+      background: var(--yellow);
+      border: 1px solid rgba(255,255,255,0.3);
+      animation: eyebrowBlink 1.5s infinite;
+    }
+    @keyframes eyebrowBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
     }
 
     .hero-title {
       font-family: var(--font-display);
-      font-size: clamp(72px, 12vw, 180px);
+      font-size: clamp(80px, 10.5vw, 160px);
       line-height: 0.88;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
       text-transform: uppercase;
-      color: var(--white);
-      margin-bottom: 40px;
-      overflow: hidden;
+      color: var(--black);
+      margin-bottom: 36px;
     }
-
-    .hero-title-line {
+    .hero-title .line { display: block; overflow: hidden; }
+    .hero-title .line-inner {
       display: block;
-      opacity: 0;
-      transform: translateY(100%);
-      animation: titleReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      transform: translateY(110%);
+      animation: lineUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    .hero-title-line:nth-child(1) { animation-delay: 0.6s; }
-    .hero-title-line:nth-child(2) { animation-delay: 0.8s; color: var(--red); }
-    .hero-title-line:nth-child(3) { animation-delay: 1.0s; }
+    .hero-title .line:nth-child(1) .line-inner { animation-delay: 0.3s; }
+    .hero-title .line:nth-child(2) .line-inner { animation-delay: 0.5s; }
+    .hero-title .line:nth-child(3) .line-inner { animation-delay: 0.7s; }
+    .hero-title .line:nth-child(4) .line-inner { animation-delay: 0.9s; }
 
-    @keyframes titleReveal {
+    .hero-title .invert-block {
+      background: var(--black);
+      color: var(--yellow);
+      padding: 0 8px;
+      display: inline-block;
+      transform: rotate(-2deg);
+      position: relative;
+      z-index: 1;
+    }
+    .hero-title .invert-block-2 {
+      background: var(--purple);
+      color: var(--white);
+      padding: 0 8px;
+      display: inline-block;
+      transform: rotate(1.5deg);
+    }
+
+    @keyframes lineUp { to { transform: translateY(0); } }
+    @keyframes fadeSlideDown {
+      from { opacity: 0; transform: translateY(-12px); }
       to { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 40px;
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 1.4s;
     }
 
     .hero-desc {
-      max-width: 440px;
-      font-size: 16px;
-      font-weight: 300;
-      color: rgba(245,244,240,0.7);
-      line-height: 1.7;
-      border-left: 2px solid var(--red);
-      padding-left: 20px;
-    }
-
-    .hero-cta-group { display: flex; gap: 16px; align-items: center; flex-shrink: 0; }
-
-    .btn-primary {
-      font-family: var(--font-display);
-      font-size: 18px;
-      letter-spacing: 0.12em;
-      background: var(--red);
-      color: var(--white);
-      border: none;
-      padding: 18px 48px;
-      cursor: none;
-      display: inline-block;
-      text-decoration: none;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.1s;
-    }
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--white);
-      transform: translateX(-101%);
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .btn-primary:hover::before { transform: translateX(0); }
-    .btn-primary:hover { color: var(--black); }
-    .btn-primary span { position: relative; z-index: 1; }
-
-    .btn-secondary {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gray);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: color 0.2s, border-color 0.2s;
-      padding-bottom: 2px;
-    }
-    .btn-secondary:hover { color: var(--white); border-color: var(--white); }
-
-    .hero-scroll {
-      position: absolute;
-      bottom: 40px; right: 48px;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.4;
+      max-width: 400px;
+      border-left: 6px solid var(--black);
+      padding-left: 18px;
+      margin-bottom: 40px;
       opacity: 0;
-      animation: fadeUp 0.6s ease forwards 1.8s;
-    }
-    .hero-scroll span {
-      font-family: var(--font-mono);
-      font-size: 8px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gray);
-      writing-mode: vertical-rl;
-    }
-    .scroll-line {
-      width: 1px; height: 60px;
-      background: linear-gradient(to bottom, var(--red), transparent);
-      animation: scrollPulse 2s ease infinite;
-    }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 1; }
+      animation: fadeSlideDown 0.5s ease both 1.0s;
     }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      opacity: 0;
+      animation: fadeSlideDown 0.5s ease both 1.2s;
     }
 
-    /* STATS BAR */
-    .stats-bar {
-      background: var(--red);
-      padding: 0 48px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-bottom: 1px solid rgba(0,0,0,0.2);
-    }
-
-    .stat-item {
-      padding: 32px 0;
-      border-right: 1px solid rgba(0,0,0,0.15);
-      padding-right: 40px;
-    }
-    .stat-item:last-child { border-right: none; }
-    .stat-item + .stat-item { padding-left: 40px; }
-
-    .stat-num {
+    .btn-hero {
       font-family: var(--font-display);
-      font-size: 56px;
-      line-height: 1;
-      color: var(--black);
-      letter-spacing: 0.02em;
+      font-size: 22px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--black);
+      color: var(--yellow);
+      border: var(--border);
+      padding: 16px 44px;
+      cursor: pointer;
+      box-shadow: var(--shadow-lg);
+      transition: box-shadow 0.1s, transform 0.1s;
+      display: inline-block;
     }
-    .stat-label {
+    .btn-hero:hover {
+      box-shadow: none;
+      transform: translate(10px, 10px);
+    }
+
+    .btn-ghost {
       font-family: var(--font-mono);
       font-size: 12px;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.75);
+      color: var(--black);
+      border-bottom: 3px solid var(--black);
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+    .btn-ghost:hover { opacity: 0.5; }
+
+    /* Hero right side */
+    .hero-right {
+      position: relative;
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      opacity: 0;
+      animation: fadeSlideDown 0.6s ease both 0.6s;
+    }
+
+    .hero-img-card {
+      background: var(--white);
+      border: var(--border-thick);
+      box-shadow: var(--shadow-xl);
+      padding: 12px;
+      width: 100%;
+      position: relative;
+      transform: rotate(1deg);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hero-img-card:hover {
+      transform: rotate(0deg);
+      box-shadow: 18px 18px 0 var(--black);
+    }
+
+    .hero-img-card img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      filter: grayscale(30%) contrast(1.05);
+      border: 3px solid var(--black);
+    }
+
+    .hero-img-caption {
+      position: absolute;
+      bottom: -1px; left: -1px; right: -1px;
+      background: var(--black);
+      color: var(--yellow);
+      font-family: var(--font-display);
+      font-size: 20px;
+      letter-spacing: 0.08em;
+      padding: 10px 16px;
+      text-transform: uppercase;
+    }
+
+    .hero-stats-row {
+      display: flex;
+      gap: 0;
+      width: 100%;
+      border: var(--border);
+      box-shadow: var(--shadow);
+      background: var(--black);
+    }
+    .hero-stat {
+      flex: 1;
+      padding: 16px 12px;
+      border-right: 3px solid rgba(255,237,0,0.2);
+      text-align: center;
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-size: 36px;
+      color: var(--yellow);
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+    .hero-stat-label {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,237,0,0.5);
       margin-top: 4px;
     }
 
-    /* SECTION HEADINGS */
-    .section-tag {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--red);
+    /* Hero bottom bar */
+    .hero-bottom-bar {
+      margin: 0 -32px;
+      background: var(--black);
+      border-top: var(--border);
+      padding: 14px 32px;
+      display: flex;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+      margin-top: auto;
+    }
+    .hbb-item {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 20px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,237,0,0.7);
     }
-    .section-tag::before { content: '//'; }
+    .hbb-item::before {
+      content: '▶';
+      color: var(--yellow);
+      font-size: 8px;
+    }
+
+    /* TICKER */
+    .ticker-wrap {
+      background: var(--purple);
+      border-top: var(--border-thick);
+      border-bottom: var(--border-thick);
+      padding: 14px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker-track {
+      display: inline-flex;
+      animation: ticker 26s linear infinite;
+    }
+    .ticker-item {
+      font-family: var(--font-display);
+      font-size: 26px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white);
+      padding: 0 48px;
+      display: inline-flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .ticker-item::after {
+      content: '★';
+      color: var(--yellow);
+      font-size: 14px;
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* SECTIONS COMMON */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      background: var(--yellow);
+      border: var(--border);
+      padding: 6px 14px;
+      display: inline-block;
+      box-shadow: 4px 4px 0 var(--black);
+      margin-bottom: 24px;
+      font-weight: 700;
+    }
+    .section-label.inv {
+      background: var(--black);
+      color: var(--yellow);
+    }
 
     .section-title {
       font-family: var(--font-display);
       font-size: clamp(48px, 7vw, 96px);
       line-height: 0.9;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.02em;
       text-transform: uppercase;
-      color: var(--white);
     }
 
-    /* FORMATIONS SECTION */
-    .fleet-section {
-      padding: 120px 48px;
-      background: var(--black);
+    /* FORMATIONS */
+    .vehicles-section {
+      padding: 80px 32px;
+      background: var(--white);
+      border-bottom: var(--border-thick);
+      position: relative;
     }
 
-    .fleet-header {
+    .vehicles-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      margin-bottom: 80px;
+      margin-bottom: 56px;
     }
 
-    .fleet-subtitle {
-      font-size: 14px;
-      color: var(--gray);
-      max-width: 280px;
-      line-height: 1.6;
-      font-weight: 300;
-    }
-
-    .fleet-grid {
+    .vehicles-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2px;
-      background: var(--red);
+      gap: 0;
+      border: var(--border-thick);
+      box-shadow: var(--shadow-xl);
     }
 
-    .fleet-card {
-      background: var(--black);
+    .vehicle-card {
+      background: var(--white);
+      border-right: var(--border);
       position: relative;
       overflow: hidden;
-      cursor: none;
+      cursor: pointer;
+      transition: background 0.15s;
     }
+    .vehicle-card:last-child { border-right: none; }
+    .vehicle-card:hover { background: var(--yellow); }
 
-    .fleet-card-img {
-      width: 100%;
+    .vc-img-wrap {
+      position: relative;
+      overflow: hidden;
       aspect-ratio: 16/10;
+      border-bottom: var(--border);
+    }
+    .vc-img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      filter: grayscale(100%) brightness(0.7);
-      transform: scale(1.05);
-      transition: filter 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-      display: block;
+      filter: grayscale(80%) contrast(1.1);
+      transition: filter 0.4s ease, transform 0.5s ease;
+    }
+    .vehicle-card:hover .vc-img {
+      filter: grayscale(0%) contrast(1.05);
+      transform: scale(1.03);
     }
 
-    .fleet-card:hover .fleet-card-img {
-      filter: grayscale(20%) brightness(0.9);
-      transform: scale(1.0);
-    }
-
-    .fleet-card-overlay {
+    .vc-badge {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, transparent 60%);
-    }
-
-    .fleet-card-content {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 32px;
-      transform: translateY(8px);
-      transition: transform 0.3s ease;
-    }
-    .fleet-card:hover .fleet-card-content { transform: translateY(0); }
-
-    .fleet-year {
+      top: 16px; left: 16px;
+      background: var(--yellow);
+      border: 3px solid var(--black);
       font-family: var(--font-mono);
       font-size: 9px;
-      letter-spacing: 0.3em;
-      color: var(--red);
-      margin-bottom: 8px;
-      text-transform: uppercase;
-    }
-
-    .fleet-name {
-      font-family: var(--font-display);
-      font-size: 42px;
-      letter-spacing: 0.06em;
-      color: var(--white);
-      line-height: 1;
-    }
-
-    .fleet-desc {
-      font-size: 13px;
-      color: rgba(245,244,240,0.6);
-      margin-top: 10px;
-      font-weight: 300;
-      max-width: 300px;
-      line-height: 1.5;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
-    }
-    .fleet-card:hover .fleet-desc { opacity: 1; transform: translateY(0); }
-
-    .fleet-badge {
-      position: absolute;
-      top: 24px; right: 24px;
-      background: var(--red);
-      padding: 6px 14px;
-      font-family: var(--font-mono);
-      font-size: 9px;
+      font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
+      padding: 5px 12px;
+      box-shadow: 3px 3px 0 var(--black);
+    }
+
+    .vc-body { padding: 28px 28px 32px; }
+    .vc-year {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 8px;
+    }
+    .vc-name {
+      font-family: var(--font-display);
+      font-size: 52px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .vc-desc {
+      font-size: 16px;
+      font-weight: 600;
+      color: #444;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+    .vehicle-card:hover .vc-desc { color: var(--black); }
+
+    .vc-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .vc-tag {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      background: var(--black);
+      color: var(--yellow);
+      padding: 4px 10px;
+      border: 2px solid var(--black);
+    }
+    .vehicle-card:hover .vc-tag {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    /* FINANCEMENT */
+    .features-section {
+      background: var(--black);
+      border-bottom: var(--border-thick);
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .features-left {
+      padding: 80px 48px;
+      border-right: var(--border);
+      border-right-color: rgba(255,237,0,0.15);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .features-title {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 7vw, 100px);
+      line-height: 0.88;
+      text-transform: uppercase;
       color: var(--white);
+      margin-bottom: 60px;
+    }
+    .features-title .accent { color: var(--yellow); }
+    .features-title .strike {
+      position: relative;
+      display: inline-block;
+    }
+    .features-title .strike::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      top: 48%;
+      height: 6px;
+      background: var(--red);
+    }
+
+    .feat-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+    .feat-item {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 20px;
+      align-items: start;
+      padding: 24px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      transition: padding-left 0.25s ease;
+      cursor: default;
+    }
+    .feat-item:first-child { border-top: none; }
+    .feat-item:hover { padding-left: 12px; }
+    .feat-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--yellow);
+      padding-top: 3px;
+    }
+    .feat-name {
+      font-family: var(--font-display);
+      font-size: 26px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .feat-desc {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.5;
+    }
+
+    .features-right {
+      padding: 80px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background: repeating-linear-gradient(
+        45deg,
+        #0d0d0d,
+        #0d0d0d 20px,
+        #111 20px,
+        #111 40px
+      );
+    }
+
+    /* App Mockup */
+    .maestro-card {
+      background: #141414;
+      border: 3px solid rgba(255,237,0,0.2);
+      box-shadow: 8px 8px 0 rgba(255,237,0,0.1);
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .maestro-card:hover {
+      border-color: var(--yellow);
+      box-shadow: 8px 8px 0 rgba(255,237,0,0.3);
+    }
+
+    .maestro-topbar {
+      background: var(--yellow);
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid var(--black);
+    }
+    .maestro-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      letter-spacing: 0.08em;
+      color: var(--black);
+      text-transform: uppercase;
+    }
+    .maestro-version {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.5);
+    }
+
+    .maestro-body { padding: 16px; }
+
+    .maestro-progress-group { margin-bottom: 14px; }
+    .mp-header {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 6px;
+    }
+    .mp-bar {
+      height: 6px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+    .mp-fill {
+      height: 100%;
+      background: var(--yellow);
+      animation: barFill 1.5s ease-out forwards;
+    }
+    .mp-fill.green { background: #39FF14; }
+    @keyframes barFill { from { width: 0% !important; } }
+
+    .maestro-modules {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .mm-item {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 8px 6px;
+      text-align: center;
+    }
+    .mm-icon { font-size: 16px; margin-bottom: 4px; }
+    .mm-label {
+      font-family: var(--font-mono);
+      font-size: 7px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+    .mm-ok { border-color: rgba(57,255,20,0.3); }
+    .mm-ok .mm-label { color: #39FF14; }
+
+    .maestro-next {
+      background: rgba(255,237,0,0.07);
+      border: 1px solid rgba(255,237,0,0.2);
+      padding: 12px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .mn-label {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      opacity: 0.7;
+    }
+    .mn-date {
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: 0.06em;
+      color: var(--yellow);
+      margin-top: 2px;
+    }
+    .mn-pill {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: var(--yellow);
+      color: var(--black);
+      padding: 6px 12px;
       font-weight: 700;
     }
 
-    /* INSTRUCTORS */
-    .instructors-section {
-      padding: 120px 48px;
-      background: #0f0f0f;
-      border-top: 1px solid rgba(255,255,255,0.06);
+    /* TEAM */
+    .team-section {
+      background: var(--yellow);
+      border-bottom: var(--border-thick);
+      padding: 80px 32px;
     }
 
-    .instructors-grid {
+    .team-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 56px;
+    }
+
+    .team-subtitle {
+      font-size: 16px;
+      font-weight: 600;
+      color: rgba(0,0,0,0.6);
+      max-width: 260px;
+      line-height: 1.4;
+    }
+
+    .team-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2px;
-      margin-top: 80px;
-      background: rgba(255,255,255,0.05);
+      gap: 0;
+      border: var(--border-thick);
+      box-shadow: var(--shadow-xl);
     }
 
-    .instructor-card {
-      background: #0f0f0f;
+    .team-card {
+      background: var(--white);
+      border-right: var(--border);
       position: relative;
       overflow: hidden;
-      cursor: none;
+      transition: background 0.15s;
     }
+    .team-card:last-child { border-right: none; }
+    .team-card:hover { background: var(--black); }
 
-    .instructor-img-wrap {
+    .tc-img-wrap {
       aspect-ratio: 3/4;
       overflow: hidden;
       position: relative;
+      border-bottom: var(--border);
     }
-
-    .instructor-img {
+    .tc-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: top;
-      filter: grayscale(100%) contrast(1.05);
-      transition: filter 0.5s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      filter: grayscale(100%) contrast(1.1);
+      transition: filter 0.5s ease, transform 0.6s ease;
+    }
+    .team-card:hover .tc-img {
+      filter: grayscale(40%) contrast(1.05);
       transform: scale(1.04);
     }
-    .instructor-card:hover .instructor-img {
-      filter: grayscale(30%);
-      transform: scale(1.0);
-    }
 
-    .instructor-stripe {
+    .tc-reveal-bar {
       position: absolute;
       bottom: 0; left: 0; right: 0;
-      height: 4px;
-      background: var(--red);
+      height: 6px;
+      background: var(--yellow);
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .instructor-card:hover .instructor-stripe { transform: scaleX(1); }
+    .team-card:hover .tc-reveal-bar { transform: scaleX(1); }
 
-    .instructor-info {
-      padding: 24px 28px;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .instructor-name {
+    .tc-body { padding: 24px 28px 28px; }
+    .tc-name {
       font-family: var(--font-display);
-      font-size: 32px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--white);
-    }
-
-    .instructor-role {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-top: 4px;
-    }
-
-    .instructor-stats {
-      display: flex;
-      gap: 24px;
-      margin-top: 16px;
-      padding-top: 16px;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .inst-stat-num {
-      font-family: var(--font-display);
-      font-size: 24px;
-      color: var(--white);
+      font-size: 40px;
       letter-spacing: 0.04em;
-    }
-    .inst-stat-label {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--white);
+      color: var(--black);
+      transition: color 0.15s;
     }
+    .team-card:hover .tc-name { color: var(--yellow); }
 
-    /* TECH SECTION */
-    .tech-section {
-      padding: 120px 48px;
-      background: var(--black);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .tech-features { display: flex; flex-direction: column; gap: 0; margin-top: 60px; }
-
-    .tech-feature {
-      padding: 28px 0;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      display: grid;
-      grid-template-columns: 32px 1fr;
-      gap: 20px;
-      align-items: start;
-      transition: padding-left 0.3s ease;
-      cursor: none;
-    }
-    .tech-feature:hover { padding-left: 8px; }
-    .tech-feature:last-child { border-bottom: 1px solid rgba(255,255,255,0.08); }
-
-    .tf-num {
+    .tc-role {
       font-family: var(--font-mono);
       font-size: 10px;
-      color: var(--red);
-      letter-spacing: 0.1em;
-      padding-top: 2px;
-    }
-    .tf-title {
-      font-family: var(--font-display);
-      font-size: 22px;
-      letter-spacing: 0.08em;
-      color: var(--white);
-      margin-bottom: 6px;
-    }
-    .tf-desc {
-      font-size: 13px;
-      color: var(--gray);
-      font-weight: 300;
-      line-height: 1.6;
-    }
-
-    .tech-visual { position: relative; }
-
-    .app-mockup {
-      background: #141414;
-      border: 1px solid rgba(255,255,255,0.08);
-      padding: 24px;
-      position: relative;
-      overflow: hidden;
-    }
-    .app-mockup::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(to right, var(--red), transparent);
-    }
-
-    .app-header-mock {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .app-logo-mock {
-      font-family: var(--font-display);
-      font-size: 16px;
-      letter-spacing: 0.1em;
-      color: var(--white);
-    }
-    .app-status {
-      font-family: var(--font-mono);
-      font-size: 8px;
       letter-spacing: 0.2em;
-      color: var(--red);
       text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      color: var(--purple);
+      margin-bottom: 20px;
+      transition: color 0.15s;
     }
-    .app-status::before {
-      content: '';
-      width: 5px; height: 5px;
-      background: var(--red);
-      border-radius: 50% !important;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
+    .team-card:hover .tc-role { color: var(--yellow); opacity: 0.6; }
 
-    .progress-section-mock { margin-bottom: 24px; }
-    .progress-label {
-      display: flex;
-      justify-content: space-between;
-      font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gray);
-      margin-bottom: 8px;
-    }
-    .progress-bar-bg {
-      height: 4px;
-      background: rgba(255,255,255,0.08);
-      margin-bottom: 10px;
-    }
-    .progress-bar-fill {
-      height: 4px;
-      background: var(--red);
-      animation: progressFill 2s ease-out forwards;
-    }
-    @keyframes progressFill { from { width: 0%; } }
-
-    .competence-grid {
+    .tc-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-bottom: 24px;
+      gap: 0;
+      border-top: 3px solid;
+      border-top-color: rgba(0,0,0,0.1);
     }
-    .comp-item {
-      background: rgba(255,255,255,0.04);
-      padding: 12px;
-      border: 1px solid rgba(255,255,255,0.06);
+    .team-card:hover .tc-stats { border-top-color: rgba(255,237,0,0.2); }
+    .tc-stat {
+      padding: 12px 0;
+      border-right: 2px solid rgba(0,0,0,0.08);
+      text-align: center;
     }
-    .comp-icon { font-size: 18px; margin-bottom: 6px; }
-    .comp-name {
+    .tc-stat:last-child { border-right: none; }
+    .tc-stat-n {
+      font-family: var(--font-display);
+      font-size: 26px;
+      letter-spacing: 0.04em;
+      color: var(--black);
+      transition: color 0.15s;
+    }
+    .tc-stat-l {
       font-family: var(--font-mono);
       font-size: 7px;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--gray);
+      color: #888;
+      transition: color 0.15s;
     }
-    .comp-status { font-size: 8px; margin-top: 4px; font-weight: 700; }
-    .comp-ok { color: #4ade80; }
-    .comp-progress { color: var(--red); }
-
-    .next-lesson-mock {
-      background: rgba(232,0,10,0.08);
-      border: 1px solid rgba(232,0,10,0.2);
-      padding: 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .nl-label {
-      font-family: var(--font-mono);
-      font-size: 8px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--red);
-    }
-    .nl-date {
-      font-family: var(--font-display);
-      font-size: 20px;
-      letter-spacing: 0.06em;
-      color: var(--white);
-      margin-top: 4px;
-    }
-    .nl-badge {
-      font-family: var(--font-mono);
-      font-size: 8px;
-      letter-spacing: 0.15em;
-      background: var(--red);
-      color: var(--white);
-      padding: 6px 12px;
-      text-transform: uppercase;
-    }
+    .team-card:hover .tc-stat-n { color: var(--yellow); }
+    .team-card:hover .tc-stat-l { color: rgba(255,237,0,0.4); }
 
     /* PRICING */
     .pricing-section {
-      padding: 120px 48px;
       background: var(--white);
-      border-top: 2px solid var(--black);
+      border-bottom: var(--border-thick);
+      padding: 80px 32px;
     }
 
-    .pricing-section .section-tag { color: var(--black); }
-    .pricing-section .section-tag::before { content: '//'; color: var(--red); }
-    .pricing-section .section-title { color: var(--black); }
+    .pricing-header { margin-bottom: 56px; }
+    .pricing-sub {
+      font-size: 18px;
+      font-weight: 600;
+      color: #666;
+      margin-top: 16px;
+      font-style: italic;
+    }
 
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 0;
-      margin-top: 80px;
-      border: 2px solid var(--black);
+      border: var(--border-thick);
+      box-shadow: var(--shadow-xl);
     }
 
     .price-card {
+      padding: 48px 36px;
       background: var(--white);
-      padding: 48px 40px;
-      border-right: 2px solid var(--black);
+      border-right: var(--border);
       display: flex;
       flex-direction: column;
       position: relative;
       overflow: hidden;
-      transition: background 0.3s ease;
-      cursor: none;
     }
     .price-card:last-child { border-right: none; }
-    .price-card.featured { background: var(--black); }
 
-    .price-card::before {
+    .price-card::after {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
+      bottom: 0; left: 0; right: 0;
       height: 0;
-      background: var(--red);
+      background: var(--yellow);
       transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 0;
     }
-    .price-card:hover::before { height: 4px; }
+    .price-card:hover::after { height: 100%; }
+    .price-card > * { position: relative; z-index: 1; }
+
+    .price-card.featured { background: var(--black); }
+    .price-card.featured::after { background: var(--purple); }
+
+    .price-popular {
+      position: absolute;
+      top: 0; right: 0;
+      background: var(--yellow);
+      border-bottom: var(--border);
+      border-left: var(--border);
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 6px 14px;
+      color: var(--black);
+    }
+    .price-card.featured .price-popular {
+      background: var(--purple);
+      color: var(--white);
+    }
 
     .price-type {
       font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 0.3em;
+      font-size: 10px;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 16px;
+      color: var(--purple);
+      margin-bottom: 12px;
     }
+    .price-card.featured .price-type { color: rgba(255,255,255,0.5); }
+    .price-card:hover .price-type { color: rgba(0,0,0,0.5); }
 
     .price-name {
       font-family: var(--font-display);
-      font-size: 36px;
-      letter-spacing: 0.06em;
+      font-size: 48px;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       color: var(--black);
-      line-height: 1;
+      line-height: 0.9;
       margin-bottom: 8px;
     }
     .price-card.featured .price-name { color: var(--white); }
 
     .price-tagline {
-      font-size: 12px;
-      color: var(--gray);
-      font-weight: 300;
-      margin-bottom: 40px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #666;
+      margin-bottom: 36px;
     }
+    .price-card.featured .price-tagline { color: rgba(255,255,255,0.5); }
 
-    .price-features {
+    .price-features-list {
       list-style: none;
       flex: 1;
       display: flex;
       flex-direction: column;
       gap: 0;
-      margin-bottom: 40px;
+      margin-bottom: 36px;
+      border-top: 2px solid rgba(0,0,0,0.08);
     }
+    .price-card.featured .price-features-list { border-top-color: rgba(255,255,255,0.08); }
 
-    .price-feature {
-      font-size: 13px;
-      font-weight: 400;
-      color: #333;
-      padding: 14px 0;
-      border-top: 1px solid rgba(0,0,0,0.1);
+    .pf-item {
+      padding: 12px 0;
+      border-bottom: 2px solid rgba(0,0,0,0.06);
+      font-size: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
-    .price-card.featured .price-feature { color: rgba(245,244,240,0.7); border-top-color: rgba(255,255,255,0.1); }
-    .price-feature::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--red);
+    .price-card.featured .pf-item { color: rgba(255,255,255,0.8); border-bottom-color: rgba(255,255,255,0.06); }
+    .pf-item::before {
+      content: '✓';
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--purple);
       flex-shrink: 0;
     }
+    .price-card.featured .pf-item::before { color: var(--yellow); }
 
     .price-amount {
       font-family: var(--font-display);
-      font-size: 64px;
-      letter-spacing: 0.02em;
+      font-size: 76px;
+      letter-spacing: 0.01em;
       color: var(--black);
       line-height: 1;
       margin-bottom: 4px;
     }
-    .price-card.featured .price-amount { color: var(--white); }
+    .price-card.featured .price-amount { color: var(--yellow); }
 
     .price-note {
       font-family: var(--font-mono);
       font-size: 9px;
-      letter-spacing: 0.1em;
-      color: var(--gray);
+      letter-spacing: 0.12em;
       text-transform: uppercase;
+      color: #999;
       margin-bottom: 28px;
     }
+    .price-card.featured .price-note { color: rgba(255,255,255,0.3); }
 
     .btn-enroll {
       display: block;
       width: 100%;
       padding: 18px;
       font-family: var(--font-display);
-      font-size: 18px;
-      letter-spacing: 0.12em;
+      font-size: 22px;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       text-align: center;
-      text-decoration: none;
-      border: 2px solid var(--black);
-      color: var(--black);
-      background: transparent;
-      cursor: none;
-      position: relative;
-      overflow: hidden;
-      transition: color 0.3s;
-    }
-    .btn-enroll::before {
-      content: '';
-      position: absolute;
-      inset: 0;
       background: var(--black);
-      transform: translateY(101%);
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      color: var(--yellow);
+      border: var(--border);
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.1s, transform 0.1s;
+      text-decoration: none;
     }
-    .btn-enroll:hover { color: var(--white); }
-    .btn-enroll:hover::before { transform: translateY(0); }
-    .btn-enroll span { position: relative; z-index: 1; }
-
+    .btn-enroll:hover {
+      box-shadow: none;
+      transform: translate(6px, 6px);
+    }
     .price-card.featured .btn-enroll {
-      background: var(--red);
-      border-color: var(--red);
-      color: var(--white);
-    }
-    .price-card.featured .btn-enroll::before { background: var(--white); }
-    .price-card.featured .btn-enroll:hover { color: var(--black); }
-
-    .featured-badge {
-      position: absolute;
-      top: 0; right: 0;
-      background: var(--red);
-      padding: 6px 16px;
-      font-family: var(--font-mono);
-      font-size: 8px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--white);
-    }
-
-    /* TICKER */
-    .ticker-section {
-      background: var(--red);
-      padding: 18px 0;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-
-    .ticker-track {
-      display: inline-flex;
-      animation: ticker 28s linear infinite;
-    }
-
-    .ticker-item {
-      font-family: var(--font-display);
-      font-size: 28px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      background: var(--yellow);
       color: var(--black);
-      padding: 0 60px;
-      display: flex;
-      align-items: center;
-      gap: 32px;
-    }
-    .ticker-item::after {
-      content: '★';
-      font-size: 14px;
-    }
-
-    @keyframes ticker {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
     }
 
     /* FOOTER */
     footer {
       background: var(--black);
-      padding: 100px 48px 48px;
-      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 80px 32px 40px;
+      border-top: var(--border-thick);
     }
 
     .footer-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      gap: 60px;
-      margin-bottom: 80px;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 60px;
     }
-
-    .footer-brand { grid-column: span 1; }
 
     .footer-logo {
       font-family: var(--font-display);
-      font-size: 36px;
-      letter-spacing: 0.06em;
+      font-size: 40px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
       color: var(--white);
       line-height: 1;
       margin-bottom: 20px;
     }
-    .footer-logo span { color: var(--red); }
-
-    .footer-bio {
-      font-size: 13px;
-      color: var(--gray);
-      font-weight: 300;
-      line-height: 1.6;
-      max-width: 220px;
+    .footer-logo span {
+      background: var(--yellow);
+      color: var(--black);
+      padding: 0 6px;
     }
+
+    .footer-tagline {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.6;
+      margin-bottom: 28px;
+      max-width: 240px;
+    }
+
+    .footer-socials { display: flex; gap: 0; }
+    .footer-social {
+      width: 44px; height: 44px;
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.15);
+      border-right: none;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 10px; font-weight: 700;
+      color: rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .footer-social:last-child { border-right: 2px solid rgba(255,255,255,0.15); }
+    .footer-social:hover { background: var(--yellow); color: var(--black); }
 
     .footer-col-title {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 0.3em;
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--red);
+      color: var(--yellow);
       margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid rgba(255,237,0,0.2);
     }
 
-    .footer-col p, .footer-col address {
-      font-size: 13px;
-      color: rgba(245,244,240,0.6);
-      line-height: 1.8;
-      font-weight: 300;
-      font-style: normal;
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+    .footer-links a::before { content: '→'; font-size: 11px; }
+    .footer-links a:hover { color: var(--yellow); }
+
+    .footer-contact-item {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 10px;
+      line-height: 1.5;
     }
 
     .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 28px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1043,55 +1155,102 @@
       font-size: 9px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--gray);
+      color: rgba(255,255,255,0.25);
+    }
+    .footer-agrement {
+      background: rgba(255,237,0,0.07);
+      border: 1px solid rgba(255,237,0,0.15);
+      padding: 6px 16px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,237,0,0.4);
     }
 
-    /* INSTRUCTOR SPLIT */
-    .instructor-split { display:grid; grid-template-columns:1fr 1fr; }
-    .instructor-split-left { padding:64px 52px; display:flex; flex-direction:column; justify-content:center; gap:24px; }
-    .instructor-split-img { position:relative; overflow:hidden; min-height:520px; }
-    .instructor-split-img img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top; filter:grayscale(100%) contrast(1.05); transition:filter .5s ease; display:block; }
-    .instructor-split:hover .instructor-split-img img { filter:grayscale(30%); }
-    .instructor-split-lbl { position:absolute; bottom:0; left:0; right:0; padding:16px 24px; background:rgba(10,10,10,0.95); border-top:2px solid var(--red); }
+    /* SECTION STYLES */
+    .sec {
+      padding: 80px 32px;
+      background: var(--white);
+      border-bottom: var(--border-thick);
+      position: relative;
+    }
+    .sec-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .sec-lbl {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      background: var(--yellow);
+      border: var(--border);
+      padding: 6px 14px;
+      display: inline-block;
+      box-shadow: 4px 4px 0 var(--black);
+      margin-bottom: 24px;
+      font-weight: 700;
+    }
+    .sec-h {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 7vw, 96px);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+    .yl {
+      color: var(--yellow);
+    }
+    .rv {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .rv.up {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .rv-d1 { transition-delay: 0.1s; }
 
-    /* SCROLL ANIMATIONS */
+    /* TEAM SPLIT */
+    .team-split { display:grid; grid-template-columns:1fr 1fr; border:var(--border-thick); box-shadow:var(--shadow-xl); margin-top:56px; }
+    .team-split-left { padding:52px; display:flex; flex-direction:column; justify-content:center; gap:24px; background:var(--white); border-right:var(--border-thick); }
+    .team-split-img { position:relative; overflow:hidden; min-height:500px; }
+    .team-split-img img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top; filter:grayscale(100%) contrast(1.1); transition:filter .5s; display:block; }
+    .team-split:hover .team-split-img img { filter:grayscale(40%) contrast(1.05); }
+    .team-split-lbl { position:absolute; bottom:0; left:0; right:0; padding:14px 20px; background:var(--black); border-top:var(--border); }
+
+    /* SCROLL REVEAL */
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(32px);
+      transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal.up { opacity: 1; transform: translateY(0); }
 
     .reveal-left {
       opacity: 0;
-      transform: translateX(-30px);
-      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateX(-32px);
+      transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .reveal-left.visible { opacity: 1; transform: translateX(0); }
-
-    .reveal-scale {
-      opacity: 0;
-      transform: scale(0.96);
-      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+    .reveal-left.up { opacity: 1; transform: translateX(0); }
 
     /* CHATBOT */
     #chat-toggle-btn {
       position: fixed;
       bottom: 28px; right: 28px;
       z-index: 1000;
-      width: 56px; height: 56px;
-      background: var(--red);
-      border: 2px solid var(--black);
-      cursor: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.15s ease, transform 0.15s ease;
+      width: 60px; height: 60px;
+      background: var(--yellow);
+      border: var(--border);
+      box-shadow: 5px 5px 0 var(--black);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: box-shadow 0.1s, transform 0.1s;
     }
-    #chat-toggle-btn:hover { background: var(--black); }
-    #chat-toggle-btn:active { transform: scale(0.95); }
+    #chat-toggle-btn:hover { box-shadow: none; transform: translate(5px, 5px); }
     #chat-toggle-btn .icon-chat,
     #chat-toggle-btn .icon-close {
       position: absolute;
@@ -1102,150 +1261,151 @@
     #chat-toggle-btn.open .icon-close { opacity: 1; transform: rotate(0deg) scale(1); }
 
     #chat-badge {
-      position: absolute;
-      top: -6px; right: -6px;
-      width: 16px; height: 16px;
-      background: var(--black);
-      font-size: 9px; color: white;
+      position: absolute; top: -8px; right: -8px;
+      width: 20px; height: 20px;
+      background: var(--purple); border: 3px solid var(--black);
+      font-size: 10px; color: white;
       display: flex; align-items: center; justify-content: center;
-      font-weight: 900; font-family: var(--font-mono);
-      animation: badgePop 0.3s ease 2s both;
+      font-weight: 800; font-family: var(--font-mono);
     }
-    @keyframes badgePop { from { transform: scale(0); } to { transform: scale(1); } }
 
     #chat-window {
-      position: fixed; bottom: 96px; right: 28px;
+      position: fixed; bottom: 104px; right: 28px;
       z-index: 999; width: 380px; max-height: 560px;
-      background: #111; border: 1px solid rgba(255,255,255,0.1);
+      background: var(--white); border: var(--border-thick);
+      box-shadow: 10px 10px 0 var(--black);
       display: flex; flex-direction: column; overflow: hidden;
-      transform: scale(0.9) translateY(16px);
+      transform: scale(0.85) translateY(20px);
       transform-origin: bottom right;
       opacity: 0; pointer-events: none;
-      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
     }
     #chat-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
 
     #chat-header {
-      padding: 14px 16px;
-      background: var(--black);
+      padding: 12px 16px; background: var(--purple);
       display: flex; align-items: center; gap: 12px;
-      flex-shrink: 0; border-bottom: 2px solid var(--red);
+      flex-shrink: 0; border-bottom: var(--border);
     }
     #chat-header .avatar {
-      width: 36px; height: 36px; background: var(--red);
+      width: 38px; height: 38px; background: var(--yellow);
+      border: 3px solid var(--black);
       display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-display); font-size: 12px; color: white;
-      letter-spacing: 0.08em;
+      font-family: var(--font-display); font-size: 14px;
+      color: var(--black); letter-spacing: 0.06em;
     }
     #chat-header .info h4 {
-      font-family: var(--font-display); font-size: 16px; font-weight: 900;
-      color: var(--white); letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.2;
+      font-family: var(--font-display); font-size: 18px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--yellow);
     }
     #chat-header .info p {
       font-family: var(--font-mono); font-size: 9px;
-      color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.15em;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
       display: flex; align-items: center; gap: 6px;
     }
     #chat-header .info p::before {
-      content: ''; width: 5px; height: 5px; background: var(--red);
-      border-radius: 50% !important; animation: pulse 2s infinite;
+      content: ''; width: 6px; height: 6px;
+      background: var(--yellow); animation: eyebrowBlink 1.5s infinite;
     }
 
     #chat-messages {
       flex: 1; overflow-y: auto; padding: 14px;
       display: flex; flex-direction: column; gap: 10px;
-      scroll-behavior: smooth; background: #0d0d0d;
+      scroll-behavior: smooth;
     }
-    #chat-messages::-webkit-scrollbar { width: 2px; }
-    #chat-messages::-webkit-scrollbar-thumb { background: var(--red); }
+    #chat-messages::-webkit-scrollbar { width: 3px; }
+    #chat-messages::-webkit-scrollbar-thumb { background: var(--purple); }
 
     .msg-row { display: flex; align-items: flex-end; gap: 8px; }
     .msg-row.user { flex-direction: row-reverse; }
     .msg-avatar {
-      width: 26px; height: 26px; background: var(--red);
+      width: 28px; height: 28px; background: var(--purple);
+      border: 2px solid var(--black);
       display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-mono); font-size: 7px; font-weight: 700;
-      color: white; text-transform: uppercase; flex-shrink: 0;
+      font-family: var(--font-mono); font-size: 8px; font-weight: 700;
+      color: var(--yellow); text-transform: uppercase; flex-shrink: 0;
     }
     .msg-bubble {
-      max-width: 80%; padding: 9px 13px;
+      max-width: 78%; padding: 9px 13px;
       font-size: 13px; line-height: 1.5; word-wrap: break-word;
-      font-family: var(--font-body); font-weight: 400;
+      font-family: var(--font-body); font-weight: 700;
     }
-    .msg-row.bot .msg-bubble { background: #1a1a1a; border-left: 2px solid var(--red); color: var(--white); }
-    .msg-row.user .msg-bubble { background: var(--red); color: var(--white); }
+    .msg-row.bot .msg-bubble {
+      background: var(--yellow); border: 3px solid var(--black);
+      color: var(--black); box-shadow: 3px 3px 0 var(--black);
+    }
+    .msg-row.user .msg-bubble {
+      background: var(--purple); border: 3px solid var(--black);
+      color: var(--white); box-shadow: 3px 3px 0 var(--black);
+    }
 
-    .typing-indicator { display: flex; gap: 4px; align-items: center; padding: 2px 0; }
-    .typing-dot { width: 5px; height: 5px; background: var(--red); animation: typingDot 1.1s infinite ease-in-out; }
-    .typing-dot:nth-child(2) { animation-delay: 0.18s; background: #555; }
-    .typing-dot:nth-child(3) { animation-delay: 0.36s; background: #555; }
+    .typing-indicator { display: flex; gap: 5px; align-items: center; padding: 2px; }
+    .typing-dot { width: 7px; height: 7px; background: var(--black); animation: typingDot 1s infinite ease-in-out; }
+    .typing-dot:nth-child(2) { animation-delay: 0.18s; background: var(--purple); }
+    .typing-dot:nth-child(3) { animation-delay: 0.36s; background: var(--purple); }
     @keyframes typingDot {
-      0%, 80%, 100% { transform: scaleY(1); opacity: 0.4; }
-      40% { transform: scaleY(2); opacity: 1; }
+      0%, 80%, 100% { transform: scale(1); opacity: 0.5; }
+      40% { transform: scale(1.6); opacity: 1; }
     }
 
     #chat-input-area {
-      padding: 10px 12px; border-top: 1px solid rgba(255,255,255,0.08);
-      display: flex; align-items: flex-end; gap: 8px; flex-shrink: 0;
-      background: #111;
+      padding: 10px 12px; border-top: var(--border);
+      display: flex; align-items: flex-end; gap: 8px;
+      flex-shrink: 0; background: #f5f5f0;
     }
     #chat-input {
-      flex: 1; background: #1a1a1a;
-      border: 1px solid rgba(255,255,255,0.1);
+      flex: 1; background: white; border: 3px solid var(--black);
       padding: 9px 12px; font-size: 13px;
-      font-family: var(--font-body); color: var(--white);
+      font-family: var(--font-body); font-weight: 700; color: var(--black);
       resize: none; outline: none;
-      min-height: 40px; max-height: 100px; line-height: 1.5;
-      transition: border-color 0.15s ease;
+      min-height: 42px; max-height: 100px; line-height: 1.5;
+      transition: box-shadow 0.1s ease;
     }
-    #chat-input:focus { border-color: var(--red); }
-    #chat-input::placeholder { color: #444; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; font-family: var(--font-mono); }
+    #chat-input:focus { box-shadow: 3px 3px 0 var(--purple); }
+    #chat-input::placeholder { color: #bbb; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-family: var(--font-mono); }
 
     #chat-send-btn {
-      width: 40px; height: 40px; background: var(--red);
-      border: none; cursor: none;
+      width: 42px; height: 42px;
+      background: var(--purple); border: 3px solid var(--black); cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; transition: background 0.15s ease;
+      flex-shrink: 0; box-shadow: 3px 3px 0 var(--black);
+      transition: box-shadow 0.1s, transform 0.1s;
     }
-    #chat-send-btn:hover:not(:disabled) { background: var(--white); }
-    #chat-send-btn:hover:not(:disabled) svg { stroke: var(--black); }
-    #chat-send-btn:disabled { opacity: 0.35; }
+    #chat-send-btn:hover:not(:disabled) { box-shadow: none; transform: translate(3px, 3px); }
+    #chat-send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
-      nav { padding: 0 20px; }
+      nav { padding: 0 16px; }
       .nav-links { display: none; }
-      .hero { padding: 0 20px 60px; }
-      .hero-bottom { flex-direction: column; align-items: flex-start; }
-      .stats-bar { grid-template-columns: repeat(2, 1fr); padding: 0 20px; }
-      .fleet-section, .instructors-section, .pricing-section { padding: 80px 20px; }
-      .fleet-grid, .instructors-grid, .pricing-grid { grid-template-columns: 1fr; }
-      .instructor-split { grid-template-columns: 1fr; }
-      .instructor-split-img { min-height: 300px; }
-      .instructor-split-left { padding: 36px 20px; }
-      .fleet-grid, .instructors-grid { background: none; }
-      .fleet-card, .instructor-card { border-bottom: 2px solid var(--red); }
-      .tech-section { grid-template-columns: 1fr; padding: 80px 20px; }
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .hero { padding: 40px 16px 0; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-right { align-items: flex-start; }
+      .hero-img-card { max-width: 100%; }
+      .hero-bottom-bar { gap: 20px; overflow-x: auto; flex-wrap: nowrap; }
+      .vehicles-section, .team-section, .pricing-section { padding: 60px 16px; }
+      .vehicles-grid, .team-grid, .pricing-grid { grid-template-columns: 1fr; }
+      .vehicle-card, .team-card, .price-card { border-right: none; border-bottom: var(--border); }
+      .price-card:last-child { border-bottom: none; }
+      .features-section { grid-template-columns: 1fr; }
+      .features-left, .features-right { padding: 60px 24px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
       #chat-window { width: calc(100vw - 32px); right: 16px; }
       #chat-toggle-btn { right: 16px; bottom: 16px; }
-      body { cursor: auto; }
-      #cursor, #cursor-ring { display: none; }
     }
   </style>
 </head>
 <body>
 
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
-
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">TRAJECTOIRE<span>_</span></a>
+  <div class="nav-logo">TRAJEC<em>TOIRE</em></div>
   <ul class="nav-links">
     <li><a href="#formations">Formations</a></li>
+    <li><a href="#financement">Financement</a></li>
     <li><a href="#equipe">Équipe</a></li>
-    <li><a href="#suivi">Suivi</a></li>
     <li><a href="#tarifs">Tarifs</a></li>
   </ul>
   <button class="nav-cta" onclick="openChat()">S'INSCRIRE</button>
@@ -1253,235 +1413,218 @@
 
 <!-- HERO -->
 <header class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-lines">
-    <div class="hero-line"></div>
-    <div class="hero-line"></div>
-    <div class="hero-line"></div>
-  </div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <div class="eyebrow-dot"></div>
+        Maubeuge · Avesnes · Fourmies · Le Quesnoy
+      </div>
+      <h1 class="hero-title">
+        <span class="line"><span class="line-inner">LA</span></span>
+        <span class="line"><span class="line-inner"><span class="invert-block">MOBILITÉ</span></span></span>
+        <span class="line"><span class="line-inner">VOTRE</span></span>
+        <span class="line"><span class="line-inner"><span class="invert-block-2">DROIT.</span></span></span>
+      </h1>
+      <p class="hero-desc">Formation au permis B pour des publics en insertion. Financement flexible, moniteurs bienveillants, 4 implantations dans le Nord.</p>
+      <div class="hero-btns">
+        <a href="javascript:void(0)" onclick="openChat()" class="btn-hero">S'INSCRIRE</a>
+        <a href="#formations" class="btn-ghost">Nos formations →</a>
+      </div>
+    </div>
 
-  <div class="hero-content">
-    <div class="hero-tag">Maubeuge · Avesnes-sur-Helpe · Fourmies · Le Quesnoy</div>
-    <h1 class="hero-title">
-      <span class="hero-title-line">L'INSERTION</span>
-      <span class="hero-title-line">PAR LA</span>
-      <span class="hero-title-line">MOBILITÉ.</span>
-    </h1>
-    <div class="hero-bottom">
-      <p class="hero-desc">Formation au permis B adaptée aux publics en difficulté. Moniteurs bienveillants, financement flexible, accompagnement personnalisé à chaque étape.</p>
-      <div class="hero-cta-group">
-        <a href="#tarifs" class="btn-primary"><span>DÉCOUVRIR NOS PARCOURS</span></a>
-        <a href="#formations" class="btn-secondary">Nos formations →</a>
+    <div class="hero-right">
+      <div class="hero-img-card">
+        <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=80&w=900" alt="Formation Trajectoire"/>
+        <div class="hero-img-caption">Lever les freins à la mobilité_</div>
+      </div>
+      <div class="hero-stats-row">
+        <div class="hero-stat">
+          <div class="hero-stat-num">4,8★</div>
+          <div class="hero-stat-label">Avis élèves</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">4</div>
+          <div class="hero-stat-label">Implantations</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">1€</div>
+          <div class="hero-stat-label">Par jour</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
+  <div class="hero-bottom-bar">
+    <div class="hbb-item">Permis B Insertion</div>
+    <div class="hbb-item">CPF Accepté</div>
+    <div class="hbb-item">Permis 1€/Jour</div>
+    <div class="hbb-item">France Travail</div>
+    <div class="hbb-item">Code Réussi ou Remboursé</div>
   </div>
 </header>
 
-<!-- STATS BAR -->
-<div class="stats-bar">
-  <div class="stat-item">
-    <div class="stat-num">4,8</div>
-    <div class="stat-label">★ Avis élèves</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">4</div>
-    <div class="stat-label">Implantations</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">1€</div>
-    <div class="stat-label">Par jour (15-25 ans)</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">CPF</div>
-    <div class="stat-label">Financement accepté</div>
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <div class="ticker-item">Permis B Insertion</div>
+    <div class="ticker-item">Conduite Accompagnée Dès 15 Ans</div>
+    <div class="ticker-item">Permis à 1€/Jour</div>
+    <div class="ticker-item">France Travail jusqu'à 1 200€</div>
+    <div class="ticker-item">CPF Accepté</div>
+    <div class="ticker-item">Code Réussi ou Remboursé</div>
+    <div class="ticker-item">4 Sites dans le Nord</div>
+    <div class="ticker-item">Permis B Insertion</div>
+    <div class="ticker-item">Conduite Accompagnée Dès 15 Ans</div>
+    <div class="ticker-item">Permis à 1€/Jour</div>
+    <div class="ticker-item">France Travail jusqu'à 1 200€</div>
+    <div class="ticker-item">CPF Accepté</div>
+    <div class="ticker-item">Code Réussi ou Remboursé</div>
+    <div class="ticker-item">4 Sites dans le Nord</div>
   </div>
 </div>
 
 <!-- FORMATIONS -->
-<section class="fleet-section" id="formations">
-  <div class="fleet-header">
+<section class="vehicles-section" id="formations">
+  <div class="vehicles-header">
     <div>
-      <div class="section-tag reveal">Nos formations</div>
-      <h2 class="section-title reveal">PERMIS B<br/>ADAPTÉ</h2>
+      <div class="section-label reveal">// Nos formations</div>
+      <h2 class="section-title reveal">APPRENDRE<br/>À CONDUIRE</h2>
     </div>
-    <p class="fleet-subtitle reveal">Évaluation de départ en voiture, simulateur et formation pratique. Un parcours construit autour de vos besoins réels.</p>
+    <p style="font-size:16px;font-weight:600;color:#666;max-width:260px;line-height:1.5;" class="reveal">Évaluation de départ, simulateur et formation en voiture. Un parcours adapté à chaque profil.</p>
   </div>
 
-  <div class="fleet-grid reveal-scale">
-    <div class="fleet-card">
-      <img class="fleet-card-img" src="https://images.unsplash.com/photo-1630406144797-821be1f35d75?auto=format&fit=crop&q=80&w=1200" alt="Formation en voiture"/>
-      <div class="fleet-card-overlay"></div>
-      <div class="fleet-card-content">
-        <div class="fleet-year">Citroën C3 · Double commande · 38€/heure</div>
-        <div class="fleet-name">CITROËN C3</div>
-        <div class="fleet-desc">Citroën C3 boîte manuelle avec double commande. Évaluation de départ incluse, moniteur Julien diplômé d'État.</div>
+  <div class="vehicles-grid reveal">
+    <div class="vehicle-card">
+      <div class="vc-img-wrap">
+        <img class="vc-img" src="https://images.unsplash.com/photo-1630406144797-821be1f35d75?auto=format&fit=crop&q=80&w=1200" alt="Formation en voiture"/>
+        <div class="vc-badge">Disponible</div>
       </div>
-      <div class="fleet-badge">Disponible</div>
+      <div class="vc-body">
+        <div class="vc-year">Citroën C3 · Double commande · 38€/heure</div>
+        <div class="vc-name">CITROËN C3</div>
+        <div class="vc-desc">Moniteur Julien, diplômé d'État, pédagogie bienveillante. Citroën C3 boîte manuelle avec double commande. Évaluation de départ incluse.</div>
+        <div class="vc-tags">
+          <span class="vc-tag">Citroën C3</span>
+          <span class="vc-tag">AAC dès 15 ans</span>
+          <span class="vc-tag">Post-permis</span>
+          <span class="vc-tag">Double cmd</span>
+        </div>
+      </div>
     </div>
-    <div class="fleet-card">
-      <img class="fleet-card-img" src="https://www.simulation-ediser.com/wp-content/uploads/fly-images/1849/Simu-EVO-fond_Noir-Orange-002-1920x972-c.jpg" alt="Simulateur de conduite"/>
-      <div class="fleet-card-overlay"></div>
-      <div class="fleet-card-content">
-        <div class="fleet-year">Préparation sécurisée · Complémentaire voiture</div>
-        <div class="fleet-name">SIMULATEUR</div>
-        <div class="fleet-desc">Découvrez les situations de conduite avant de prendre la route. Idéal pour lever l'appréhension.</div>
+    <div class="vehicle-card">
+      <div class="vc-img-wrap">
+        <img class="vc-img" src="https://www.simulation-ediser.com/wp-content/uploads/fly-images/1849/Simu-EVO-fond_Noir-Orange-002-1920x972-c.jpg" alt="Simulateur de conduite"/>
+        <div class="vc-badge">Disponible</div>
       </div>
-      <div class="fleet-badge">Disponible</div>
+      <div class="vc-body">
+        <div class="vc-year">Préparation sécurisée · Complémentaire voiture</div>
+        <div class="vc-name">SIMULATEUR</div>
+        <div class="vc-desc">Abordez les situations de conduite sans stress. Idéal pour lever l'appréhension avant de prendre la route.</div>
+        <div class="vc-tags">
+          <span class="vc-tag">Préparation</span>
+          <span class="vc-tag">Sécurité</span>
+          <span class="vc-tag">Sans stress</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker-section">
-  <div class="ticker-track">
-    <div class="ticker-item">Permis B Insertion</div>
-    <div class="ticker-item">Conduite Accompagnée Dès 15 ans</div>
-    <div class="ticker-item">CPF Accepté</div>
-    <div class="ticker-item">Permis à 1€/Jour</div>
-    <div class="ticker-item">France Travail jusqu'à 1 200€</div>
-    <div class="ticker-item">Code Réussi ou Remboursé</div>
-    <div class="ticker-item">4 Implantations Nord</div>
-    <div class="ticker-item">Permis B Insertion</div>
-    <div class="ticker-item">Conduite Accompagnée Dès 15 ans</div>
-    <div class="ticker-item">CPF Accepté</div>
-    <div class="ticker-item">Permis à 1€/Jour</div>
-    <div class="ticker-item">France Travail jusqu'à 1 200€</div>
-    <div class="ticker-item">Code Réussi ou Remboursé</div>
-    <div class="ticker-item">4 Implantations Nord</div>
+<!-- FINANCEMENT -->
+<section class="features-section" id="financement">
+  <div class="features-left">
+    <div class="section-label inv reveal-left">// Financement</div>
+    <h2 class="features-title reveal-left">
+      SANS<br/>
+      <span class="accent">FRAIS</span><br/>
+      CACHÉS<span class="strike">.</span>
+    </h2>
+
+    <ul class="feat-list">
+      <li class="feat-item reveal-left">
+        <span class="feat-num">01</span>
+        <div class="feat-content">
+          <div class="feat-name">PERMIS À 1€/JOUR</div>
+          <div class="feat-desc">Pour les 15-25 ans. Le reste à charge est financé par votre banque partenaire sous forme de prêt à taux zéro.</div>
+        </div>
+      </li>
+      <li class="feat-item reveal-left">
+        <span class="feat-num">02</span>
+        <div class="feat-content">
+          <div class="feat-name">AIDE FRANCE TRAVAIL</div>
+          <div class="feat-desc">Jusqu'à 1 200€ pour les demandeurs d'emploi et personnes accompagnées par France Travail.</div>
+        </div>
+      </li>
+      <li class="feat-item reveal-left">
+        <span class="feat-num">03</span>
+        <div class="feat-content">
+          <div class="feat-name">CPF — COMPTE FORMATION</div>
+          <div class="feat-desc">Financement possible sous conditions. Notre équipe vous aide à mobiliser vos droits CPF.</div>
+        </div>
+      </li>
+      <li class="feat-item reveal-left">
+        <span class="feat-num">04</span>
+        <div class="feat-content">
+          <div class="feat-name">BOURSES & COLLECTIVITÉS</div>
+          <div class="feat-desc">Bourses au permis, fonds d'aide aux jeunes (FAJ), aides des collectivités territoriales et de la CAF.</div>
+        </div>
+      </li>
+    </ul>
   </div>
-</div>
+
+  <div class="features-right">
+    <div class="maestro-card reveal">
+      <div class="maestro-topbar">
+        <div class="maestro-title">TRAJECTOIRE_PARCOURS</div>
+        <div class="maestro-version">Sem. 3/7</div>
+      </div>
+      <div class="maestro-body">
+        <div class="maestro-progress-group">
+          <div class="mp-header"><span>Progression conduite</span><span style="color:var(--yellow)">65%</span></div>
+          <div class="mp-bar"><div class="mp-fill" style="width:65%"></div></div>
+          <div class="mp-header"><span>Code de la route</span><span style="color:#39FF14">78%</span></div>
+          <div class="mp-bar"><div class="mp-fill green" style="width:78%"></div></div>
+        </div>
+        <div class="maestro-modules">
+          <div class="mm-item mm-ok"><div class="mm-icon">🚦</div><div class="mm-label">Priorités ✓</div></div>
+          <div class="mm-item mm-ok"><div class="mm-icon">🛣️</div><div class="mm-label">Route ✓</div></div>
+          <div class="mm-item"><div class="mm-icon">🔄</div><div class="mm-label">Créneaux</div></div>
+          <div class="mm-item mm-ok"><div class="mm-icon">🌧️</div><div class="mm-label">Pluie ✓</div></div>
+          <div class="mm-item"><div class="mm-icon">🌙</div><div class="mm-label">Nuit</div></div>
+          <div class="mm-item mm-ok"><div class="mm-icon">🏙️</div><div class="mm-label">Ville ✓</div></div>
+          <div class="mm-item"><div class="mm-icon">📋</div><div class="mm-label">Code</div></div>
+          <div class="mm-item mm-ok"><div class="mm-icon">🚗</div><div class="mm-label">Simu ✓</div></div>
+        </div>
+        <div class="maestro-next">
+          <div>
+            <div class="mn-label">Prochain cours théorique</div>
+            <div class="mn-date">Lun. · 9h00 – 12h00</div>
+          </div>
+          <div class="mn-pill">Semaine 4</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- EQUIPE -->
-<section class="instructors-section" id="equipe">
-  <div class="section-tag reveal">Notre équipe</div>
-  <h2 class="section-title reveal">À VOTRE<br/>ÉCOUTE</h2>
-
-  <div class="instructor-split reveal-scale" style="margin-top:80px;border:1px solid rgba(255,255,255,0.08);">
-    <div class="instructor-split-left">
-      <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:10px;"><span>//</span>Moniteur diplômé d'État · BEPECASER</div>
-      <div style="font-family:var(--font-display);font-size:clamp(64px,9vw,120px);letter-spacing:0.04em;text-transform:uppercase;color:var(--white);line-height:0.88;">JULIEN</div>
-      <p style="font-size:15px;font-weight:300;color:rgba(245,244,240,0.65);line-height:1.75;border-left:2px solid var(--red);padding-left:20px;">Pédagogie adaptée et bienveillante. Chaque élève avance à son rythme, accompagné pas à pas vers la réussite de son permis B.</p>
-      <div style="display:flex;gap:32px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.08);">
-        <div>
-          <div style="font-family:var(--font-display);font-size:22px;letter-spacing:0.06em;color:var(--white);">BEPECASER</div>
-          <div style="font-family:var(--font-mono);font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-top:3px;">Diplôme d'État</div>
-        </div>
-        <div>
-          <div style="font-family:var(--font-display);font-size:22px;letter-spacing:0.06em;color:var(--white);">4,8★</div>
-          <div style="font-family:var(--font-mono);font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-top:3px;">Satisfaction</div>
-        </div>
-        <div>
-          <div style="font-family:var(--font-display);font-size:22px;letter-spacing:0.06em;color:var(--white);">C3</div>
-          <div style="font-family:var(--font-mono);font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-top:3px;">Citroën · Dbl cmd</div>
-        </div>
+<section class="sec" id="equipe">
+  <div class="sec-inner">
+    <div class="sec-lbl">Notre équipe</div>
+    <div class="sec-h rv">À votre<br/><span class="yl">Écoute</span></div>
+    <div class="team-split rv rv-d1">
+      <div class="team-split-left">
+        <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--purple);">Moniteur diplômé d'État · Permis B</div>
+        <div style="font-weight:900;font-size:clamp(52px,7vw,88px);text-transform:uppercase;letter-spacing:-.03em;line-height:.88;color:var(--black);">Julien</div>
+        <p style="border-left:3px solid var(--yellow);padding-left:16px;font-size:15px;line-height:1.8;color:#666;">Pédagogie adaptée et bienveillante. Chaque élève avance à son rythme, accompagné pas à pas vers la réussite de son permis B.</p>
+        <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#666;line-height:1.9;border-top:1px solid rgba(17,17,17,.1);padding-top:16px;">DIPLÔME: BEPECASER · TITRE PRO ECSR<br/>VÉHICULE: CITROËN C3 · DOUBLE COMMANDE<br/>FOCUS: PÉDAGOGIE ADAPTÉE & BIENVEILLANCE</div>
       </div>
-    </div>
-    <div class="instructor-split-img">
-      <img src="https://f.hellowork.com/obs-static-images/seo/ObsJob/moniteur-auto-ecole.jpg" alt="Julien, moniteur Trajectoire"/>
-      <div class="instructor-split-lbl">
-        <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--red);">// Votre moniteur</div>
-        <div style="font-family:var(--font-display);font-size:18px;letter-spacing:0.08em;color:var(--white);margin-top:4px;">Citroën C3 · Double commande · 38€/heure</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SUIVI -->
-<section class="tech-section" id="suivi">
-  <div>
-    <div class="section-tag reveal-left">Notre méthode</div>
-    <h2 class="section-title reveal-left">UN PARCOURS<br/>SUR<br/>MESURE</h2>
-    <div class="tech-features">
-      <div class="tech-feature reveal-left">
-        <span class="tf-num">01</span>
-        <div>
-          <div class="tf-title">ÉVALUATION DE DÉPART</div>
-          <div class="tf-desc">Chaque élève commence par un bilan en voiture pour adapter le programme à son niveau réel.</div>
+      <div class="team-split-img">
+        <img src="https://f.hellowork.com/obs-static-images/seo/ObsJob/moniteur-auto-ecole.jpg" alt="Julien, moniteur Trajectoire"/>
+        <div class="team-split-lbl">
+          <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);">// Votre moniteur</div>
+          <div style="font-weight:700;font-size:14px;color:var(--white);margin-top:3px;">Citroën C3 · Double commande · 38€/heure</div>
         </div>
-      </div>
-      <div class="tech-feature reveal-left">
-        <span class="tf-num">02</span>
-        <div>
-          <div class="tf-title">CODE EN LIGNE — PASS ROUSSEAU</div>
-          <div class="tf-desc">Accès illimité à la plateforme Pass Rousseau. Révisions 24h/24, examens blancs inclus.</div>
-        </div>
-      </div>
-      <div class="tech-feature reveal-left">
-        <span class="tf-num">03</span>
-        <div>
-          <div class="tf-title">FORMATION PRATIQUE</div>
-          <div class="tf-desc">5 à 7 semaines de formation structurée, du lundi au vendredi, avec simulateur et voiture.</div>
-        </div>
-      </div>
-      <div class="tech-feature reveal-left">
-        <span class="tf-num">04</span>
-        <div>
-          <div class="tf-title">SUIVI PERSONNALISÉ</div>
-          <div class="tf-desc">Orienté par vos partenaires d'insertion. Notre équipe coordonne avec les financeurs tout au long du parcours.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="tech-visual reveal">
-    <div class="app-mockup">
-      <div class="app-header-mock">
-        <div class="app-logo-mock">TRAJECTOIRE_</div>
-        <div class="app-status">En formation</div>
-      </div>
-
-      <div class="progress-section-mock">
-        <div class="progress-label"><span>Progression conduite</span><span style="color:var(--red)">60%</span></div>
-        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:60%"></div></div>
-        <div class="progress-label"><span>Code de la route</span><span style="color:#4ade80">82%</span></div>
-        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:82%;background:#4ade80"></div></div>
-      </div>
-
-      <div class="competence-grid">
-        <div class="comp-item">
-          <div class="comp-icon">🚦</div>
-          <div class="comp-name">Priorités</div>
-          <div class="comp-status comp-ok">✓ Acquis</div>
-        </div>
-        <div class="comp-item">
-          <div class="comp-icon">🛣️</div>
-          <div class="comp-name">Route</div>
-          <div class="comp-status comp-ok">✓ Acquis</div>
-        </div>
-        <div class="comp-item">
-          <div class="comp-icon">🔄</div>
-          <div class="comp-name">Créneaux</div>
-          <div class="comp-status comp-progress">En cours</div>
-        </div>
-        <div class="comp-item">
-          <div class="comp-icon">🌙</div>
-          <div class="comp-name">Nuit</div>
-          <div class="comp-status comp-progress">En cours</div>
-        </div>
-        <div class="comp-item">
-          <div class="comp-icon">🌧️</div>
-          <div class="comp-name">Pluie</div>
-          <div class="comp-status comp-ok">✓ Acquis</div>
-        </div>
-        <div class="comp-item">
-          <div class="comp-icon">🏙️</div>
-          <div class="comp-name">Urbain</div>
-          <div class="comp-status comp-ok">✓ Acquis</div>
-        </div>
-      </div>
-
-      <div class="next-lesson-mock">
-        <div>
-          <div class="nl-label">Prochain cours</div>
-          <div class="nl-date">Lun. — 9h00</div>
-        </div>
-        <div class="nl-badge">Semaine 3</div>
       </div>
     </div>
   </div>
@@ -1489,96 +1632,99 @@
 
 <!-- TARIFS -->
 <section class="pricing-section" id="tarifs">
-  <div class="section-tag">Tarification</div>
-  <h2 class="section-title">CHOISISSEZ<br/>VOTRE PARCOURS</h2>
+  <div class="pricing-header">
+    <div class="section-label reveal">// Tarifs</div>
+    <h2 class="section-title reveal">NOS<br/>PARCOURS</h2>
+    <p class="pricing-sub reveal">Financement flexible. Aucun frais caché. Notre équipe vous aide à trouver la bonne aide.</p>
+  </div>
 
   <div class="pricing-grid">
     <div class="price-card reveal">
       <div class="price-type">Code de la route</div>
-      <div class="price-name">PASS CODE</div>
+      <div class="price-name">PASS<br/>CODE</div>
       <div class="price-tagline">Préparez l'examen théorique.</div>
-      <ul class="price-features">
-        <li class="price-feature">Pass Rousseau illimité</li>
-        <li class="price-feature">Séances de révision encadrées</li>
-        <li class="price-feature">4 examens blancs minimum</li>
-        <li class="price-feature">Code réussi ou remboursé*</li>
+      <ul class="price-features-list">
+        <li class="pf-item">Pass Rousseau illimité</li>
+        <li class="pf-item">Séances encadrées incluses</li>
+        <li class="pf-item">4 examens blancs minimum</li>
+        <li class="pf-item">Code réussi ou remboursé*</li>
       </ul>
       <div class="price-amount">430€</div>
-      <div class="price-note">*25 séries · moy. 34/40 requis</div>
-      <a href="tel:0327662012" class="btn-enroll"><span>NOUS APPELER</span></a>
+      <div class="price-note">*25 séries · Moy. 34/40 requise</div>
+      <a href="tel:0327662012" class="btn-enroll">NOUS APPELER</a>
     </div>
 
     <div class="price-card featured reveal">
-      <div class="featured-badge">LE PLUS CHOISI</div>
+      <div class="price-popular">Le plus choisi</div>
       <div class="price-type">Permis B</div>
       <div class="price-name">PARCOURS<br/>30H</div>
-      <div class="price-tagline">La voie vers l'autonomie.</div>
-      <ul class="price-features">
-        <li class="price-feature">30 heures de conduite</li>
-        <li class="price-feature">Évaluation de départ incluse</li>
-        <li class="price-feature">Simulateur + voiture</li>
-        <li class="price-feature">Pass Rousseau code inclus</li>
-        <li class="price-feature">Suivi personnalisé</li>
+      <div class="price-tagline">La voie vers l'autonomie professionnelle.</div>
+      <ul class="price-features-list">
+        <li class="pf-item">30 heures de conduite</li>
+        <li class="pf-item">Évaluation de départ incluse</li>
+        <li class="pf-item">Simulateur + voiture</li>
+        <li class="pf-item">Pass Rousseau code inclus</li>
+        <li class="pf-item">Suivi & accompagnement</li>
       </ul>
-      <div class="price-amount" style="color:var(--white)">1 140€</div>
-      <div class="price-note">CPF · France Travail · Permis 1€/jour</div>
-      <a href="javascript:void(0)" onclick="openChat()" class="btn-enroll"><span>S'INSCRIRE</span></a>
+      <div class="price-amount" style="color:var(--yellow)">1 140€</div>
+      <div class="price-note">CPF · France Travail · 1€/jour · Bourses</div>
+      <a href="javascript:void(0)" onclick="openChat()" class="btn-enroll" style="background:var(--yellow);color:var(--black)">S'INSCRIRE</a>
     </div>
 
     <div class="price-card reveal">
       <div class="price-type">Permis B+</div>
       <div class="price-name">PARCOURS<br/>40H</div>
-      <div class="price-tagline">Réduit la période probatoire.</div>
-      <ul class="price-features">
-        <li class="price-feature">40 heures de conduite</li>
-        <li class="price-feature">Évaluation de départ incluse</li>
-        <li class="price-feature">Formation post-permis incluse</li>
-        <li class="price-feature">Conduite accompagnée dès 15 ans</li>
-        <li class="price-feature">Conduite supervisée dès 18 ans</li>
+      <div class="price-tagline">Réduisez la période probatoire.</div>
+      <ul class="price-features-list">
+        <li class="pf-item">40 heures de conduite</li>
+        <li class="pf-item">Conduite accompagnée dès 15 ans</li>
+        <li class="pf-item">Conduite supervisée dès 18 ans</li>
+        <li class="pf-item">Formation post-permis incluse</li>
+        <li class="pf-item">Financement flexible</li>
       </ul>
       <div class="price-amount">1 520€</div>
       <div class="price-note">Financement flexible disponible</div>
-      <a href="tel:0327662012" class="btn-enroll"><span>NOUS APPELER</span></a>
+      <a href="tel:0327662012" class="btn-enroll">NOUS APPELER</a>
     </div>
   </div>
 </section>
 
 <!-- LE MOT DE L'ÉQUIPE -->
-<section style="padding:120px 48px;background:#0f0f0f;border-top:1px solid rgba(255,255,255,0.06);" id="mot-equipe">
-  <div class="section-tag reveal">Le mot de l'équipe</div>
-  <h2 class="section-title reveal" style="margin-bottom:60px;">NOTRE<br/>MISSION</h2>
-  <blockquote class="reveal" style="border-left:2px solid var(--red);padding-left:32px;max-width:820px;">
-    <p style="font-size:17px;font-weight:300;color:rgba(245,244,240,0.7);line-height:1.85;">Trajectoire est un outil d'insertion professionnelle à destination des publics jeunes et adultes, inscrits et suivis dans le champ de l'insertion socio-professionnelle. L'association contribue à lever des freins à la mobilité en proposant une formation au permis B adaptée à des publics en difficulté. Les candidats, orientés sur prescription des partenaires de l'insertion professionnelle du territoire, intègrent le dispositif au cours de sessions de formations qui durent au total cinq semaines.</p>
-    <footer style="margin-top:24px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--red);">— L'équipe Trajectoire</footer>
+<section style="background:var(--purple);border-top:var(--border-thick);border-bottom:var(--border-thick);padding:80px 32px;" id="mot-equipe">
+  <div class="section-label reveal" style="background:var(--yellow);">// Le mot de l'équipe</div>
+  <h2 class="section-title reveal" style="color:var(--white);margin-bottom:48px;">NOTRE<br/>MISSION</h2>
+  <blockquote class="reveal" style="border-left:6px solid var(--yellow);padding-left:28px;max-width:820px;">
+    <p style="font-family:var(--font-body);font-size:20px;font-weight:600;color:rgba(255,255,255,0.85);line-height:1.6;">Trajectoire est un outil d'insertion professionnelle à destination des publics jeunes et adultes, inscrits et suivis dans le champ de l'insertion socio-professionnelle. L'association contribue à lever des freins à la mobilité en proposant une formation au permis B adaptée à des publics en difficulté. Les candidats, orientés sur prescription des partenaires de l'insertion professionnelle du territoire, intègrent le dispositif au cours de sessions de formations qui durent au total cinq semaines.</p>
+    <footer style="margin-top:24px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--yellow);">— L'équipe Trajectoire</footer>
   </blockquote>
 </section>
 
 <!-- NOS ENGAGEMENTS QUALITÉ -->
-<section style="padding:120px 48px;background:var(--black);border-top:1px solid rgba(255,255,255,0.06);" id="qualite">
-  <div class="section-tag reveal">Engagements qualité</div>
-  <h2 class="section-title reveal" style="margin-bottom:80px;">NOS<br/>GARANTIES</h2>
-  <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;background:var(--red);">
-    <div style="background:var(--black);padding:40px 28px;display:flex;flex-direction:column;gap:16px;">
-      <div class="section-tag" style="margin-bottom:0;">01</div>
+<section style="background:var(--white);border-bottom:var(--border-thick);padding:80px 32px;" id="qualite">
+  <div class="section-label reveal">// Engagements qualité</div>
+  <h2 class="section-title reveal" style="margin-bottom:48px;">NOS<br/>GARANTIES</h2>
+  <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;border:var(--border-thick);box-shadow:var(--shadow-xl);">
+    <div style="padding:36px 24px;border-right:var(--border);display:flex;flex-direction:column;gap:14px;">
+      <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--purple);font-weight:700;">// 01</div>
       <img src="images/logo-ecq.png" alt="Label École Conduite Qualité" style="height:80px;width:auto;object-fit:contain;align-self:flex-start;"/>
-      <div style="font-family:var(--font-display);font-size:22px;letter-spacing:0.06em;text-transform:uppercase;color:var(--white);line-height:1.1;">Label École Conduite Qualité</div>
-      <div style="font-size:13px;color:var(--gray);font-weight:300;line-height:1.6;">Auto-école agréée et contrôlée. Moniteurs diplômés d'État.</div>
+      <div style="font-family:var(--font-display);font-size:26px;letter-spacing:0.04em;text-transform:uppercase;line-height:1.1;">Label École Conduite Qualité</div>
+      <div style="font-size:14px;font-weight:600;color:#555;line-height:1.5;">Auto-école agréée. Moniteurs diplômés d'État BEPECASER.</div>
     </div>
-    <div style="background:var(--black);padding:40px 28px;display:flex;flex-direction:column;gap:16px;">
-      <div class="section-tag" style="margin-bottom:0;">02</div>
+    <div style="padding:36px 24px;border-right:var(--border);display:flex;flex-direction:column;gap:14px;">
+      <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--purple);font-weight:700;">// 02</div>
       <img src="images/logo-qualiopi.png" alt="Certification Qualiopi" style="height:60px;width:auto;object-fit:contain;align-self:flex-start;"/>
-      <div style="font-family:var(--font-display);font-size:22px;letter-spacing:0.06em;text-transform:uppercase;color:var(--white);line-height:1.1;">Certification Qualiopi</div>
-      <div style="font-size:13px;color:var(--gray);font-weight:300;line-height:1.6;">Organisme certifié pour l'accès aux financements publics.</div>
+      <div style="font-family:var(--font-display);font-size:26px;letter-spacing:0.04em;text-transform:uppercase;line-height:1.1;">Certification Qualiopi</div>
+      <div style="font-size:14px;font-weight:600;color:#555;line-height:1.5;">Organisme certifié pour accès aux financements publics (CPF, France Travail).</div>
     </div>
-    <div style="background:var(--black);padding:40px 28px;display:flex;flex-direction:column;gap:16px;">
-      <div class="section-tag" style="margin-bottom:0;">03</div>
-      <div style="font-family:var(--font-display);font-size:22px;letter-spacing:0.06em;text-transform:uppercase;color:var(--white);line-height:1.1;">Code Réussi ou Remboursé</div>
-      <div style="font-size:13px;color:var(--gray);font-weight:300;line-height:1.6;">25 séries · 4 examens blancs · Moy. 34/40 requise.</div>
+    <div style="padding:36px 24px;border-right:var(--border);display:flex;flex-direction:column;gap:14px;">
+      <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--purple);font-weight:700;">// 03</div>
+      <div style="font-family:var(--font-display);font-size:26px;letter-spacing:0.04em;text-transform:uppercase;line-height:1.1;">Code Réussi ou Remboursé</div>
+      <div style="font-size:14px;font-weight:600;color:#555;line-height:1.5;">25 séries · 4 examens blancs · Moy. 34/40. Échec = remboursement.</div>
     </div>
-    <div style="background:var(--black);padding:40px 28px;display:flex;flex-direction:column;gap:16px;">
-      <div class="section-tag" style="margin-bottom:0;">04</div>
-      <div style="font-family:var(--font-display);font-size:22px;letter-spacing:0.06em;text-transform:uppercase;color:var(--white);line-height:1.1;">Garantie Financière</div>
-      <div style="font-size:13px;color:var(--gray);font-weight:300;line-height:1.6;">Vos fonds sont protégés. Remboursement garanti en cas de formation non dispensée.</div>
+    <div style="padding:36px 24px;display:flex;flex-direction:column;gap:14px;">
+      <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--purple);font-weight:700;">// 04</div>
+      <div style="font-family:var(--font-display);font-size:26px;letter-spacing:0.04em;text-transform:uppercase;line-height:1.1;">Garantie Financière</div>
+      <div style="font-size:14px;font-weight:600;color:#555;line-height:1.5;">Vos versements sont protégés. Remboursement garanti.</div>
     </div>
   </div>
 </section>
@@ -1586,55 +1732,52 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
-    <div class="footer-brand">
-      <div class="footer-logo">TRAJEC<br/>TOIRE<span>_</span></div>
-      <p class="footer-bio">Auto-école d'insertion professionnelle. Lever les freins à la mobilité pour ouvrir les portes de l'emploi.</p>
+    <div>
+      <div class="footer-logo">TRAJEC<span>TOIRE</span></div>
+      <p class="footer-tagline">Auto-école d'insertion professionnelle. Lever les freins à la mobilité pour ouvrir les portes de l'emploi. Présents à Maubeuge, Avesnes, Fourmies et Le Quesnoy.</p>
+      <div class="footer-socials">
+        <div class="footer-social">FB</div>
+        <div class="footer-social">IG</div>
+      </div>
     </div>
-    <div class="footer-col">
-      <p class="footer-col-title">Navigation</p>
-      <p>
-        <a href="#formations" style="color:inherit;text-decoration:none;display:block;margin-bottom:8px">Formations</a>
-        <a href="#equipe" style="color:inherit;text-decoration:none;display:block;margin-bottom:8px">L'Équipe</a>
-        <a href="#suivi" style="color:inherit;text-decoration:none;display:block;margin-bottom:8px">Notre méthode</a>
-        <a href="#tarifs" style="color:inherit;text-decoration:none;display:block">Tarifs</a>
-      </p>
+    <div>
+      <div class="footer-col-title">Navigation</div>
+      <ul class="footer-links">
+        <li><a href="#formations">Formations</a></li>
+        <li><a href="#financement">Financement</a></li>
+        <li><a href="#equipe">L'Équipe</a></li>
+        <li><a href="#tarifs">Tarifs</a></li>
+      </ul>
     </div>
-    <div class="footer-col">
-      <p class="footer-col-title">Contact</p>
-      <address>
-        17 rue du Commerce<br/>
-        59600 Maubeuge<br/><br/>
-        03 27 66 20 12<br/>
-        associationtrajectoire@orange.fr
-      </address>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-contact-item">17 rue du Commerce<br/>59600 Maubeuge</div>
+      <div class="footer-contact-item">03 27 66 20 12</div>
+      <div class="footer-contact-item">associationtrajectoire@orange.fr</div>
     </div>
-    <div class="footer-col">
-      <p class="footer-col-title">Financement</p>
-      <p>
-        CPF (sous conditions)<br/>
-        Permis à 1€/jour · 15-25 ans<br/>
-        France Travail jusqu'à 1 200€<br/>
-        Bourses · FAJ · Collectivités<br/>
-        <span style="color:var(--red);font-weight:700">Frais inscription : 30€</span>
-      </p>
+    <div>
+      <div class="footer-col-title">Horaires</div>
+      <div class="footer-contact-item">Lun – Ven : 9h00 – 12h00</div>
+      <div class="footer-contact-item">Lun – Ven : 13h00 – 16h00</div>
+      <div class="footer-contact-item" style="color:var(--yellow)">Vendredi après-midi : Fermé</div>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2026 Trajectoire — Auto-école d'insertion · Label Qualité des formations</p>
-    <p>Maubeuge · Avesnes · Fourmies · Le Quesnoy</p>
+    <p>© 2026 Trajectoire. Label Qualité des formations.</p>
+    <div class="footer-agrement">Maubeuge · Avesnes · Fourmies · Le Quesnoy</div>
   </div>
 </footer>
 
-<!-- CHATBOT WIDGET -->
+<!-- CHATBOT -->
 <button id="chat-toggle-btn" aria-label="Ouvrir le chat">
   <span id="chat-badge">1</span>
   <span class="icon-chat">
-    <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="square" viewBox="0 0 24 24">
+    <svg width="24" height="24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24">
       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
     </svg>
   </span>
   <span class="icon-close">
-    <svg width="20" height="20" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="square" viewBox="0 0 24 24">
+    <svg width="22" height="22" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" viewBox="0 0 24 24">
       <path d="M18 6L6 18M6 6l12 12"/>
     </svg>
   </span>
@@ -1642,17 +1785,17 @@
 
 <div id="chat-window" role="dialog" aria-label="Chat Trajectoire">
   <div id="chat-header">
-    <div class="avatar">T</div>
+    <div class="avatar">T.</div>
     <div class="info">
-      <h4>Trajectoire_</h4>
+      <h4>Trajectoire.</h4>
       <p>En ligne maintenant</p>
     </div>
   </div>
   <div id="chat-messages"></div>
   <div id="chat-input-area">
-    <textarea id="chat-input" placeholder="VOTRE MESSAGE..." rows="1" aria-label="Message"></textarea>
+    <textarea id="chat-input" placeholder="VOTRE QUESTION ICI..." rows="1" aria-label="Message"></textarea>
     <button id="chat-send-btn" aria-label="Envoyer">
-      <svg width="16" height="16" fill="none" stroke="white" stroke-width="2" stroke-linecap="square" viewBox="0 0 24 24">
+      <svg width="17" height="17" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24">
         <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/>
       </svg>
     </button>
@@ -1660,22 +1803,35 @@
 </div>
 
 <script>
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursor-ring');
-  document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    ring.style.left = e.clientX + 'px';
-    ring.style.top = e.clientY + 'px';
-  });
+  function animateCount(el, target, duration = 1600) {
+    const start = performance.now();
+    const update = (now) => {
+      const t = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.floor(ease * target);
+      if (t < 1) requestAnimationFrame(update);
+      else el.textContent = target;
+    };
+    requestAnimationFrame(update);
+  }
 
-  const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-scale');
-  const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  reveals.forEach(el => revealObserver.observe(el));
+  const heroStats = document.querySelector('.hero-stats-row');
+  if (heroStats) {
+    let statsDone = false;
+    new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !statsDone) {
+        statsDone = true;
+        document.querySelectorAll('[data-count]').forEach(el => animateCount(el, parseInt(el.dataset.count)));
+      }
+    }, { threshold: 0.5 }).observe(heroStats);
+  }
+
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .rv');
+  revealEls.forEach(el => {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('up'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }).observe(el);
+  });
 
   const WEBHOOK_URL = 'https://n8n.srv959772.hstgr.cloud/webhook/3b0146ab-7f91-4d90-9897-c295569fc1c4';
   const SESSION_ID = 'sess_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
@@ -1685,25 +1841,33 @@
   const chatInput = document.getElementById('chat-input');
   const sendBtn = document.getElementById('chat-send-btn');
   const badge = document.getElementById('chat-badge');
-  let isOpen = false, isSending = false;
+  let isOpen = false, isSending = false, conversationTracked = false;
+  const SUPABASE_URL = 'https://akssmktgzcskwexezsso.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_AulGiL7b8PZWGbEWfKi4Vw_6g2Bahv_';
+  function supabaseRpc(fn) {
+    fetch(SUPABASE_URL + '/rest/v1/rpc/' + fn, {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: '{}'
+    }).catch(() => {});
+  }
 
   function openChat() { if (!isOpen) { toggleBtn.click(); } }
-  function init() { addMessage('bot', 'Bonjour. Bienvenue chez Trajectoire. Comment puis-je vous aider ?'); }
+  function init() { addMessage('bot', 'Bonjour ! Bienvenue chez Trajectoire. Comment puis-je vous aider ?'); }
 
   toggleBtn.addEventListener('click', () => {
     isOpen = !isOpen;
     chatWindow.classList.toggle('open', isOpen);
     toggleBtn.classList.toggle('open', isOpen);
     badge.style.opacity = '0';
-    if (isOpen) setTimeout(() => chatInput.focus(), 250);
+    if (isOpen) setTimeout(() => chatInput.focus(), 300);
   });
 
   function addMessage(role, text, isError = false) {
     const row = document.createElement('div');
     row.className = `msg-row ${role}${isError ? ' msg-error' : ''}`;
     if (role === 'bot') {
-      const av = document.createElement('div');
-      av.className = 'msg-avatar'; av.textContent = 'T'; row.appendChild(av);
+      const av = document.createElement('div'); av.className = 'msg-avatar'; av.textContent = 'T'; row.appendChild(av);
     }
     const col = document.createElement('div');
     col.style.cssText = 'display:flex;flex-direction:column;gap:3px;' + (role === 'user' ? 'align-items:flex-end;' : '');
@@ -1727,6 +1891,7 @@
   async function sendMessage() {
     const text = chatInput.value.trim();
     if (!text || isSending) return;
+    if (!conversationTracked) { conversationTracked = true; supabaseRpc('increment_chatbot_conversations'); }
     isSending = true; sendBtn.disabled = true;
     chatInput.value = ''; autoResize(); addMessage('user', text); showTyping();
     try {
@@ -1757,6 +1922,7 @@
   chatInput.addEventListener('input', autoResize);
   chatInput.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
   sendBtn.addEventListener('click', sendMessage);
+  supabaseRpc('increment_landing_page_views');
   init();
 </script>
 </body>
